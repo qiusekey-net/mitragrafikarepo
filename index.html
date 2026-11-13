@@ -5,95 +5,188 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mitra Grafika — Percetakan Rumahan Anambas</title>
 <style>
-  :root { --purple: #190133; --orange: #ff4500; --ink: #222222; --light: #faf7ff; }
+  :root { --purple: #190133; --purple2: #2a0a52; --orange: #ff4500; --ink: #222222; --cream: #faf7ff; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { font-family: Arial, sans-serif; margin: 0; color: var(--ink); line-height: 1.6; }
-  header, section, footer { padding: 56px 20px; max-width: 800px; margin: 0 auto; }
   .eyebrow { letter-spacing: 2px; font-size: 13px; font-weight: bold; color: var(--orange); margin: 0 0 12px; }
-  header { text-align: center; background: var(--purple); color: #ffffff; max-width: none; }
-  header .inner { max-width: 800px; margin: 0 auto; }
-  header h1 { margin: 0 0 12px; font-size: 40px; line-height: 1.2; }
-  header p { color: #d9ccf5; font-size: 18px; }
+  h2 { margin-top: 0; color: var(--purple); font-size: 30px; }
+  section { padding: 56px 20px; max-width: 900px; margin: 0 auto; }
   .cta { display: inline-block; background: var(--orange); color: #fff; padding: 14px 28px;
-         border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 16px; }
-  h2 { margin-top: 0; color: var(--purple); }
-  .card { border: 1px solid #e5ddf5; border-radius: 12px; padding: 18px; margin: 12px 0; background: #fff; }
-  .card strong { color: var(--purple); }
-  .step { display: flex; gap: 16px; margin: 16px 0; }
-  .step .num { flex: 0 0 40px; height: 40px; border-radius: 50%; background: var(--orange); color: #fff;
-               display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
-  .step strong { color: var(--purple); }
+         border-radius: 999px; text-decoration: none; font-weight: bold; margin-top: 16px;
+         box-shadow: 0 8px 20px rgba(255,69,0,.35); }
+  .cta.ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); box-shadow: none; }
+
+  nav { position: sticky; top: 0; z-index: 40; background: rgba(25,1,51,.94);
+        backdrop-filter: blur(6px); color: #fff; padding: 12px 20px;
+        display: flex; justify-content: space-between; align-items: center; }
+  nav .brand { font-weight: bold; letter-spacing: 2px; }
+  nav .brand span { color: var(--orange); }
+  nav a.nav-cta { background: var(--orange); color: #fff; text-decoration: none; font-weight: bold;
+                  padding: 8px 18px; border-radius: 999px; font-size: 14px; }
+
+  header { text-align: center; color: #ffffff; padding: 72px 20px 64px;
+           background: radial-gradient(ellipse at 80% 0%, rgba(255,69,0,.38), transparent 55%),
+                       linear-gradient(135deg, #190133, #2a0a52 60%, #190133); }
+  header .inner { max-width: 900px; margin: 0 auto; }
+  header h1 { margin: 0 0 14px; font-size: clamp(34px, 6vw, 56px); line-height: 1.15; }
+  header h1 .accent { color: var(--orange); }
+  header p { color: #d9ccf5; font-size: 18px; max-width: 620px; margin: 0 auto; }
+  header .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .collage { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .tile { width: 160px; height: 190px; border-radius: 18px; padding: 16px; text-align: left;
+          display: flex; align-items: flex-end; font-weight: bold; font-size: 17px; line-height: 1.3;
+          box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+  .tile.t1 { background: var(--orange); color: #fff; transform: rotate(-4deg); }
+  .tile.t2 { background: #fff; color: var(--purple); transform: rotate(2deg); }
+  .tile.t3 { background: var(--purple2); color: #fff; transform: rotate(-1deg); border: 1px solid rgba(255,255,255,.25); }
+  .caption { color: #b9a8d6; font-size: 13px; margin-top: 18px; }
+
+  .marquee { background: var(--orange); color: #fff; overflow: hidden; padding: 12px 0;
+             font-weight: bold; letter-spacing: 1px; white-space: nowrap; }
+  .marquee-track { display: inline-flex; animation: scroll 20s linear infinite; }
+  .marquee-track span { padding: 0 18px; }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid #e5ddf5; border-radius: 16px; padding: 22px; background: #fff;
+          box-shadow: 0 6px 20px rgba(25,1,51,.06); }
+  .card h3 { margin: 0 0 6px; color: var(--purple); }
+  .card p { margin: 0; }
+  .bar { height: 6px; border-radius: 999px; background: var(--orange); width: 48px; margin-bottom: 14px; }
+
   .dark { background: var(--purple); color: #fff; max-width: none; }
-  .dark .inner { max-width: 800px; margin: 0 auto; }
+  .dark .inner { max-width: 900px; margin: 0 auto; }
   .dark h2 { color: #fff; }
-  .dark p, .dark .step p { color: #d9ccf5; }
-  .dark .step strong { color: #fff; }
-  .faq { border-bottom: 1px solid #eee; padding: 16px 0; }
-  .faq strong { color: var(--purple); }
-  .final { text-align: center; }
-  footer { text-align: center; color: #666; font-size: 14px; }
+  .step { display: flex; gap: 16px; margin: 18px 0; }
+  .step .num { flex: 0 0 44px; height: 44px; border-radius: 50%; background: var(--orange); color: #fff;
+               display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 19px; }
+  .step strong { color: #fff; font-size: 17px; }
+  .step p { color: #d9ccf5; margin: 2px 0 0; }
+
+  details { border-bottom: 1px solid #eee; padding: 6px 0; }
+  summary { font-weight: bold; color: var(--purple); cursor: pointer; padding: 12px 0; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  details p { margin: 0 0 14px; }
+
+  .final { text-align: center; background: linear-gradient(135deg, #ff4500, #ff7a1a); color: #fff;
+           max-width: none; }
+  .final .inner { max-width: 900px; margin: 0 auto; }
+  .final h2 { color: #fff; }
+  .final .cta { background: #fff; color: var(--orange); box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+
+  .wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 60px; height: 60px;
+              border-radius: 50%; background: var(--orange); color: #fff; font-weight: bold;
+              display: flex; align-items: center; justify-content: center; text-decoration: none;
+              box-shadow: 0 10px 24px rgba(255,69,0,.45); font-size: 18px; }
+  footer { text-align: center; color: #666; font-size: 14px; padding: 32px 20px; }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; }
+    section { padding: 44px 20px; }
+    .tile { width: 140px; height: 170px; }
+  }
 </style>
 </head>
 <body>
 
+<nav>
+  <div class="brand">MITRA <span>GRAFIKA</span></div>
+  <a class="nav-cta" href="https://wa.me/[NOMOR WHATSAPP]">Pesan</a>
+</nav>
+
 <header>
   <div class="inner">
     <p class="eyebrow">MITRA GRAFIKA &bull; TAREMPA, SIANTAN</p>
-    <h1>Cetak cepat, hasil rapi, tanpa kirim ke luar pulau.</h1>
+    <h1>Cetak cepat, hasil rapi, <span class="accent">tanpa kirim ke luar pulau.</span></h1>
     <p>Percetakan rumahan di Kepulauan Anambas &mdash; dokumen, foto, sablon kaos DTF, stiker, sampai laminating. Satuan pun bisa.</p>
-    <a class="cta" href="https://wa.me/[NOMOR WHATSAPP]">Chat WhatsApp &mdash; Pesan Sekarang</a>
+    <div class="cta-row">
+      <a class="cta" href="https://wa.me/[NOMOR WHATSAPP]">Chat WhatsApp &mdash; Pesan Sekarang</a>
+      <a class="cta ghost" href="#layanan">Lihat Layanan</a>
+    </div>
+    <div class="collage">
+      <div class="tile t1">Sablon Kaos DTF</div>
+      <div class="tile t2">Stiker &amp; Cutting</div>
+      <div class="tile t3">Banner &amp; Spanduk</div>
+    </div>
+    <p class="caption">Ilustrasi layanan &mdash; galeri foto hasil cetakan menyusul.</p>
   </div>
 </header>
 
-<section>
+<div class="marquee"><div class="marquee-track">
+  <span>CETAK DOKUMEN &#10022; SABLON DTF &#10022; STIKER VINYL &#10022; FOTOCOPY &#10022; LAMINATING &#10022; BANNER &#10022; CETAK FOTO &#10022;</span>
+  <span>CETAK DOKUMEN &#10022; SABLON DTF &#10022; STIKER VINYL &#10022; FOTOCOPY &#10022; LAMINATING &#10022; BANNER &#10022; CETAK FOTO &#10022;</span>
+</div></div>
+
+<section class="reveal">
   <p class="eyebrow">UNTUK SIAPA</p>
   <h2>Siapa yang biasa cetak di sini?</h2>
-  <div class="card"><strong>Pelajar &amp; Mahasiswa</strong> &mdash; Tugas, skripsi, dan cetak foto.</div>
-  <div class="card"><strong>UMKM &amp; Toko</strong> &mdash; Stiker, label produk, banner, dan nota.</div>
-  <div class="card"><strong>Kantor &amp; Instansi</strong> &mdash; Dokumen, kop surat, dan spanduk.</div>
-  <div class="card"><strong>Acara &amp; Organisasi</strong> &mdash; Kaos, banner, dan undangan.</div>
-</section>
-
-<section>
-  <p class="eyebrow">LAYANAN</p>
-  <h2>Apa saja yang bisa dicetak?</h2>
-  <p>Harga menyesuaikan ukuran dan jumlah &mdash; tanya langsung via WhatsApp.</p>
-  <div class="card"><strong>Cetak Dokumen &amp; Foto</strong><br>Print hitam-putih dan warna, ukuran A4/F4, kertas HVS dan foto.</div>
-  <div class="card"><strong>Sablon Kaos DTF</strong><br>Sablon kaos full warna, satuan pun bisa.</div>
-  <div class="card"><strong>Stiker &amp; Cutting</strong><br>Stiker vinyl dan cutting custom, potong presisi.</div>
-  <div class="card"><strong>Fotocopy &amp; Laminating</strong><br>Fotokopi volume besar dan finishing doff/glossy anti air.</div>
-</section>
-
-<section class="dark">
-  <div class="inner">
-    <p class="eyebrow">CARA PESAN</p>
-    <h2>Pesan dalam 4 langkah</h2>
-    <div class="step"><div class="num">1</div><div><strong>Kirim file via WhatsApp</strong><p>PDF, JPG, atau PNG. Belum punya desain? Bisa dibantu buatkan.</p></div></div>
-    <div class="step"><div class="num">2</div><div><strong>Konfirmasi harga &amp; waktu selesai</strong><p>Kami kabari total biaya dan perkiraan selesai sebelum dicetak.</p></div></div>
-    <div class="step"><div class="num">3</div><div><strong>Kami proses cetak</strong><p>Pesananmu dikerjakan di Tarempa, langsung oleh kami.</p></div></div>
-    <div class="step"><div class="num">4</div><div><strong>Ambil di Tarempa</strong><p>Datang dan ambil pesananmu begitu selesai.</p></div></div>
+  <div class="grid2">
+    <div class="card"><div class="bar"></div><h3>Pelajar &amp; Mahasiswa</h3><p>Tugas, skripsi, dan cetak foto.</p></div>
+    <div class="card"><div class="bar"></div><h3>UMKM &amp; Toko</h3><p>Stiker, label produk, banner, dan nota.</p></div>
+    <div class="card"><div class="bar"></div><h3>Kantor &amp; Instansi</h3><p>Dokumen, kop surat, dan spanduk.</p></div>
+    <div class="card"><div class="bar"></div><h3>Acara &amp; Organisasi</h3><p>Kaos, banner, dan undangan.</p></div>
   </div>
 </section>
 
-<section>
-  <p class="eyebrow">PERTANYAAN UMUM</p>
-  <h2>Masih ada yang bikin penasaran?</h2>
-  <div class="faq"><strong>Bisa cetak satuan?</strong><br>Bisa. 1 lembar atau 1 kaos pun dilayani.</div>
-  <div class="faq"><strong>File apa saja yang diterima?</strong><br>PDF, JPG, atau PNG. Kalau belum punya desain, bisa dibantu buatkan.</div>
-  <div class="faq"><strong>Berapa lama prosesnya?</strong><br>Tergantung jumlah dan antrean. Tanyakan perkiraan waktunya via WhatsApp sebelum pesan.</div>
-  <div class="faq"><strong>Apakah bisa desain juga?</strong><br>Bisa. Kami bantu buatkan desain untuk stiker, banner, kaos, dan lainnya.</div>
-  <div class="faq"><strong>Di mana lokasinya?</strong><br>Tarempa, Siantan, Kepulauan Anambas.</div>
+<section id="layanan" class="reveal">
+  <p class="eyebrow">LAYANAN</p>
+  <h2>Apa saja yang bisa dicetak?</h2>
+  <p>Harga menyesuaikan ukuran dan jumlah &mdash; tanya langsung via WhatsApp.</p>
+  <div class="grid2">
+    <div class="card"><div class="bar"></div><h3>Cetak Dokumen &amp; Foto</h3><p>Print hitam-putih dan warna, ukuran A4/F4, kertas HVS dan foto.</p></div>
+    <div class="card"><div class="bar"></div><h3>Sablon Kaos DTF</h3><p>Sablon kaos full warna, satuan pun bisa.</p></div>
+    <div class="card"><div class="bar"></div><h3>Stiker &amp; Cutting</h3><p>Stiker vinyl dan cutting custom, potong presisi.</p></div>
+    <div class="card"><div class="bar"></div><h3>Fotocopy &amp; Laminating</h3><p>Fotokopi volume besar dan finishing doff/glossy anti air.</p></div>
+  </div>
 </section>
 
-<section class="final">
-  <p class="eyebrow">SIAP PESAN?</p>
-  <h2>Cetak hari ini, jadi lebih cepat.</h2>
-  <p>Klik tombol di bawah, langsung terhubung ke WhatsApp kami.</p>
-  <a class="cta" href="https://wa.me/[NOMOR WHATSAPP]">Pesan via WhatsApp</a>
+<section class="dark reveal">
+  <div class="inner">
+    <p class="eyebrow">CARA PESAN</p>
+    <h2>Pesan dalam 4 langkah</h2>
+    <div class="grid2">
+      <div class="step"><div class="num">1</div><div><strong>Kirim file via WhatsApp</strong><p>PDF, JPG, atau PNG. Belum punya desain? Bisa dibantu buatkan.</p></div></div>
+      <div class="step"><div class="num">2</div><div><strong>Konfirmasi harga &amp; waktu selesai</strong><p>Kami kabari total biaya dan perkiraan selesai sebelum dicetak.</p></div></div>
+      <div class="step"><div class="num">3</div><div><strong>Kami proses cetak</strong><p>Pesananmu dikerjakan di Tarempa, langsung oleh kami.</p></div></div>
+      <div class="step"><div class="num">4</div><div><strong>Ambil di Tarempa</strong><p>Datang dan ambil pesananmu begitu selesai.</p></div></div>
+    </div>
+  </div>
 </section>
+
+<section class="reveal">
+  <p class="eyebrow">PERTANYAAN UMUM</p>
+  <h2>Masih ada yang bikin penasaran?</h2>
+  <details><summary>Bisa cetak satuan?</summary><p>Bisa. 1 lembar atau 1 kaos pun dilayani.</p></details>
+  <details><summary>File apa saja yang diterima?</summary><p>PDF, JPG, atau PNG. Kalau belum punya desain, bisa dibantu buatkan.</p></details>
+  <details><summary>Berapa lama prosesnya?</summary><p>Tergantung jumlah dan antrean. Tanyakan perkiraan waktunya via WhatsApp sebelum pesan.</p></details>
+  <details><summary>Apakah bisa desain juga?</summary><p>Bisa. Kami bantu buatkan desain untuk stiker, banner, kaos, dan lainnya.</p></details>
+  <details><summary>Di mana lokasinya?</summary><p>Tarempa, Siantan, Kepulauan Anambas.</p></details>
+</section>
+
+<section class="final reveal">
+  <div class="inner">
+    <p class="eyebrow" style="color:#fff;">SIAP PESAN?</p>
+    <h2>Cetak hari ini, jadi lebih cepat.</h2>
+    <p>Klik tombol di bawah, langsung terhubung ke WhatsApp kami.</p>
+    <a class="cta" href="https://wa.me/[NOMOR WHATSAPP]">Pesan via WhatsApp</a>
+  </div>
+</section>
+
+<a class="wa-float" href="https://wa.me/[NOMOR WHATSAPP]">WA</a>
 
 <footer>
   <p>Mitra Grafika &mdash; Tarempa, Siantan, Kepulauan Anambas &bull; mitragrafika.id@gmail.com</p>
 </footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
