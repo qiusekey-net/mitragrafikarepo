@@ -18,10 +18,9 @@
   .cta.ghost { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); box-shadow: none; }
 
   nav { position: sticky; top: 0; z-index: 40; background: rgba(25,1,51,.94);
-        backdrop-filter: blur(6px); color: #fff; padding: 12px 20px;
+        backdrop-filter: blur(6px); color: #fff; padding: 10px 20px;
         display: flex; justify-content: space-between; align-items: center; }
-  nav .brand { font-weight: bold; letter-spacing: 2px; }
-  nav .brand span { color: var(--orange); }
+  nav .logo { height: 42px; width: 42px; border-radius: 50%; object-fit: cover; display: block; }
   nav a.nav-cta { background: var(--orange); color: #fff; text-decoration: none; font-weight: bold;
                   padding: 8px 18px; border-radius: 999px; font-size: 14px; }
 
@@ -40,7 +39,6 @@
   .tile.t1 { background: var(--orange); color: #fff; transform: rotate(-4deg); }
   .tile.t2 { background: #fff; color: var(--purple); transform: rotate(2deg); }
   .tile.t3 { background: var(--purple2); color: #fff; transform: rotate(-1deg); border: 1px solid rgba(255,255,255,.25); }
-  .caption { color: #b9a8d6; font-size: 13px; margin-top: 18px; }
 
   .marquee { background: var(--orange); color: #fff; overflow: hidden; padding: 12px 0;
              font-weight: bold; letter-spacing: 1px; white-space: nowrap; }
@@ -54,6 +52,14 @@
   .card h3 { margin: 0 0 6px; color: var(--purple); }
   .card p { margin: 0; }
   .bar { height: 6px; border-radius: 999px; background: var(--orange); width: 48px; margin-bottom: 14px; }
+
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .gallery figure { margin: 0; background: #fff; border: 1px solid #e5ddf5; border-radius: 16px;
+                    overflow: hidden; box-shadow: 0 6px 20px rgba(25,1,51,.06); }
+  .gallery figure img { width: 100%; height: 300px; object-fit: cover; display: block; }
+  .gallery figcaption { padding: 14px 16px; }
+  .gallery figcaption strong { display: block; color: var(--purple); }
+  .gallery figcaption span { font-size: 14px; color: #666; }
 
   .dark { background: var(--purple); color: #fff; max-width: none; }
   .dark .inner { max-width: 900px; margin: 0 auto; }
@@ -85,6 +91,7 @@
   .reveal.visible { opacity: 1; transform: none; }
   @media (max-width: 640px) {
     .grid2 { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; }
     section { padding: 44px 20px; }
     .tile { width: 140px; height: 170px; }
   }
@@ -93,7 +100,7 @@
 <body>
 
 <nav>
-  <div class="brand">MITRA <span>GRAFIKA</span></div>
+  <img class="logo" src="logo.png" alt="Logo Mitra Grafika">
   <a class="nav-cta" href="https://wa.me/[NOMOR WHATSAPP]">Pesan</a>
 </nav>
 
@@ -111,7 +118,6 @@
       <div class="tile t2">Stiker &amp; Cutting</div>
       <div class="tile t3">Banner &amp; Spanduk</div>
     </div>
-    <p class="caption">Ilustrasi layanan &mdash; galeri foto hasil cetakan menyusul.</p>
   </div>
 </header>
 
@@ -140,6 +146,26 @@
     <div class="card"><div class="bar"></div><h3>Sablon Kaos DTF</h3><p>Sablon kaos full warna, satuan pun bisa.</p></div>
     <div class="card"><div class="bar"></div><h3>Stiker &amp; Cutting</h3><p>Stiker vinyl dan cutting custom, potong presisi.</p></div>
     <div class="card"><div class="bar"></div><h3>Fotocopy &amp; Laminating</h3><p>Fotokopi volume besar dan finishing doff/glossy anti air.</p></div>
+  </div>
+</section>
+
+<section id="galeri" class="reveal">
+  <p class="eyebrow">HASIL CETAKAN</p>
+  <h2>Contoh hasil cetakan kami</h2>
+  <p>Kaos jersey custom &mdash; desain bebas, warna tajam, satuan pun bisa.</p>
+  <div class="gallery">
+    <figure>
+      <img src="jersey-pastel.jpg" alt="Jersey lengan panjang motif geometri pastel">
+      <figcaption><strong>Jersey lengan panjang</strong><span>Motif geometri pastel &mdash; mockup desain</span></figcaption>
+    </figure>
+    <figure>
+      <img src="jersey-do-something.jpg" alt="Jersey do SOMETHING gradasi oranye">
+      <figcaption><strong>Jersey &ldquo;do SOMETHING&rdquo;</strong><span>Gradasi oranye &mdash; hasil cetak</span></figcaption>
+    </figure>
+    <figure>
+      <img src="jersey-futsal.jpg" alt="Jersey futsal ungu dan biru">
+      <figcaption><strong>Jersey futsal</strong><span>Ungu &amp; biru &mdash; hasil cetak</span></figcaption>
+    </figure>
   </div>
 </section>
 
